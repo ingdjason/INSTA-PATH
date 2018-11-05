@@ -1,0 +1,6 @@
+framework module Pods_INSTA_PATH {
+  umbrella header "Pods-INSTA-PATH-umbrella.h"
+
+  export *
+  module * { export * }
+}
