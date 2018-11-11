@@ -13,6 +13,10 @@ class PhotoCellTableViewCell: UITableViewCell {
     @IBOutlet weak var imageview: UIImageView!
     @IBOutlet weak var labelpost: UILabel!
     
+    @IBOutlet weak var username: UILabel!
+    
+    @IBOutlet weak var datelabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

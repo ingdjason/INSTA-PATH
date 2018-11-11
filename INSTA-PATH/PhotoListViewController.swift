@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import Parse
 
 class PhotoListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var tableview: UITableView!
     var refreshControl: UIRefreshControl!
-    var imagelist = [PFObject]()
+    var imagelist = [Post]()
     let currentusr = PFUser.current()!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,8 +21,8 @@ class PhotoListViewController: UIViewController, UITableViewDataSource, UITableV
         tableview.delegate = self
         tableview.dataSource = self
         tableview.separatorStyle = .none
-        tableview.estimatedRowHeight = 120
-        tableview.rowHeight = 120 //UITableViewAutomaticDimension
+        tableview.estimatedRowHeight = 350
+        tableview.rowHeight = 350 //UITableViewAutomaticDimension
         
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(PhotoListViewController.didPullToRefresh(_:)), for: .valueChanged)
@@ -44,23 +45,23 @@ class PhotoListViewController: UIViewController, UITableViewDataSource, UITableV
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PhotoCell") as! PhotoCellTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! PhotoCellTableViewCell
+        let imagelists = imagelist[indexPath.row]
         
-        let chat = imagelist[indexPath.row]
-        if let user = chat["user"] as? PFUser {
-            // User found! update username label with username
-            if(currentusr.username == user.username!){
-                cell.userLbl.backgroundColor = UIColor.cyan
-                cell.userLbl.text = user.username
-            }else{
-                cell.userLbl.backgroundColor = UIColor.brown
-                cell.userLbl.text = user.username
+        cell.labelpost.text = imagelists.caption
+        cell.username.text = imagelists.author.username
+        cell.labelpost.layer.cornerRadius = 17
+        cell.imageview.layer.cornerRadius = 17
+        
+        if let imageFile : PFFile = imagelists.media{
+            imageFile.getDataInBackground { (data,error) in
+                if (error != nil) {
+                    print(error.debugDescription)
+                }else{
+                    cell.imageview?.image = UIImage(data: data!)
+                }
             }
-            
-        }else{
-            cell.userLbl.text = "🤖"
         }
-        cell.messageLbl.text = (chat["text"] as! String)
         
         return cell
     }
@@ -71,6 +72,25 @@ class PhotoListViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
 
+    func loadData(){
+        let query = Post.query()
+        query?.order(byDescending: "createdAt")
+        query?.includeKey("author")
+        query?.order(byDescending: "createdAt")
+        query?.limit = 20
+        query?.findObjectsInBackground { (objects: [PFObject]?, error: Error?) -> Void in
+            if error == nil {
+                // The find succeeded.
+                self.imagelist = objects! as! [Post]
+                self.tableview.reloadData()
+                self.refreshControl.endRefreshing()
+                
+            }
+            else {
+                print(error!.localizedDescription)
+            }
+        }
+    }
     /*
     // MARK: - Navigation
 
