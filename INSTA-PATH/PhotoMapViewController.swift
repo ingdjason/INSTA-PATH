@@ -11,6 +11,8 @@ import UIKit
 class PhotoMapViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var imageViewTake: UIImageView!
     @IBOutlet weak var captionField: UITextField!
+    @IBOutlet weak var btnsend: UIButton!
+    @IBOutlet weak var activityindicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,16 +22,48 @@ class PhotoMapViewController: UIViewController, UIImagePickerControllerDelegate,
         vc.delegate = self
         vc.allowsEditing = true
         vc.sourceType = UIImagePickerControllerSourceType.photoLibrary
-        
+        self.activityindicator.stopAnimating()
         self.present(vc, animated: true, completion: nil)
     }
 
     @IBAction func onSubmit(_ sender: Any) {
+        self.activityindicator.startAnimating()//now_playing
+        btnsend.isEnabled = false
         Post.postUserImage(image: imageViewTake.image, withCaption: captionField.text) { (success: Bool , error: Error?) in
             if success {
                 print("success")
+                 self.activityindicator.stopAnimating()
+                 self.btnsend.isEnabled = true
+                
+                let alertController = UIAlertController(title: "SUCCESS", message: "Post successful...", preferredStyle: .alert)
+                
+                // create an OK action
+                let OKAction = UIAlertAction(title: "OK", style: .default) { (action) in
+                    // handle response here.
+                    // self.fetchAllMovies()
+                }
+                // add the OK action to the alert controller
+                alertController.addAction(OKAction)
+                self.present(alertController, animated: true) {
+                    // optional code for what happens after the alert controller has finished presenting
+                }
             }else{
                 print("\(String(describing: error))")
+                self.activityindicator.stopAnimating()
+                self.btnsend.isEnabled = true
+                
+                let alertController = UIAlertController(title: "ERROR", message: "\(String(describing: error))", preferredStyle: .alert)
+                
+                // create an OK action
+                let OKAction = UIAlertAction(title: "OK", style: .default) { (action) in
+                    // handle response here.
+                    // self.fetchAllMovies()
+                }
+                // add the OK action to the alert controller
+                alertController.addAction(OKAction)
+                self.present(alertController, animated: true) {
+                    // optional code for what happens after the alert controller has finished presenting
+                }
             }
         }
         

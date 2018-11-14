@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INSTA-PATH" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0cW-Cn-u8Q">
-                                <rect key="frame" x="0.0" y="64" width="320" height="25"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="25"/>
                                 <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <viewLayoutGuide key="safeArea" id="GLZ-h4-tK9"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
@@ -259,12 +259,20 @@
                                     <action selector="onSubmit:" destination="ILB-SJ-9k4" eventType="touchUpInside" id="os2-Jk-fHU"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="bfs-2X-CFY">
+                                <rect key="frame" x="134" y="360" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <color key="backgroundColor" red="0.66799789669999998" green="0.47512125970000002" blue="0.25860109930000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Fz6-08-fmj"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Capture" image="insta_camera_btn" id="AjA-CS-yi2"/>
                     <connections>
+                        <outlet property="activityindicator" destination="bfs-2X-CFY" id="lar-l5-pYh"/>
+                        <outlet property="btnsend" destination="2hv-kY-huW" id="AUo-AQ-JU4"/>
                         <outlet property="captionField" destination="Yb2-wH-ATf" id="fEu-KX-juo"/>
                         <outlet property="imageViewTake" destination="igL-c4-ahp" id="8OE-US-Xfc"/>
                     </connections>
@@ -282,7 +290,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="F4g-fE-gqx">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                                <rect key="frame" x="0.0" y="59" width="320" height="460"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -364,6 +372,15 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BZP-ay-bBL">
+                                <rect key="frame" x="222" y="21" width="89" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="logoutFunc:" destination="NJd-g6-1j3" eventType="touchUpInside" id="GKF-Re-fJI"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="loginoutVC" id="WbD-yN-jcc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="bTj-9c-m76"/>
@@ -375,7 +392,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tfd-KH-5Id" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2161.875" y="-1688.0281690140846"/>
+            <point key="canvasLocation" x="2001" y="-1995"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="kpf-do-5Ji">
@@ -421,4 +438,7 @@
         <image name="instapic" width="640" height="640"/>
         <image name="profile_tab" width="25" height="25"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="WbD-yN-jcc"/>
+    </inferredMetricsTieBreakers>
 </document>
