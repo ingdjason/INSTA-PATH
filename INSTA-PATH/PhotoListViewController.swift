@@ -13,7 +13,7 @@ class PhotoListViewController: UIViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var tableview: UITableView!
     var refreshControl: UIRefreshControl!
     var imagelist = [Post]()
-    let currentusr = PFUser.current()!
+   // let currentusr = PFUser.current()!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -50,6 +50,7 @@ class PhotoListViewController: UIViewController, UITableViewDataSource, UITableV
                 print(error.localizedDescription)
             } else {
                 print("Successful loggout")
+                self.showalert(title: "Required", message: "Successful loggout...")
                 // Load and show the login view controller
                 //let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 //let loginViewController = storyboard.instantiateViewController(withIdentifier: "loginoutVC")
@@ -58,6 +59,20 @@ class PhotoListViewController: UIViewController, UITableViewDataSource, UITableV
         })
     }
     
+    func showalert(title: String, message: String ){
+        let alertController = UIAlertController(title: "\(title)", message: "\(message)", preferredStyle: .alert)
+        // create an OK action
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action) in
+            // handle response here.
+            exit(1)
+        }
+        // add the OK action to the alert controller
+        alertController.addAction(OKAction)
+        
+        present(alertController, animated: true) {
+            // optional code for what happens after the alert controller has finished presenting
+        }
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! PhotoCellTableViewCell
@@ -86,6 +101,19 @@ class PhotoListViewController: UIViewController, UITableViewDataSource, UITableV
         // Dispose of any resources that can be recreated.
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "vcDetails") {
+            let cell = sender as! UITableViewCell
+            let indexPath = tableview.indexPath(for: cell)
+            let imagedata = imagelist[indexPath!.row]
+            // Get the new view controller using segue.destinationViewController.
+            let detailsViewController = segue.destination as! DetailsViewController
+            // Pass the selected object to the new view controller.
+            detailsViewController.post = imagedata
+        }else{
+            //print("segue not ok")
+        }
+    }
 
     func loadData(){
         let query = Post.query()

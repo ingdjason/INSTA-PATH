@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0DC467372589B60E6C26BEDF /* Pods_INSTA_PATHUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B92336EC895FC4F71F99F0D5 /* Pods_INSTA_PATHUITests.framework */; };
 		2C2062AD0CBF2ABB7EED60BE /* Pods_INSTA_PATHTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60D3B429C0BD4E846A785A7A /* Pods_INSTA_PATHTests.framework */; };
+		5947432521A84CCA00989873 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5947432421A84CCA00989873 /* DetailsViewController.swift */; };
 		59772E16218EAAAA00230CBB /* PhotoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59772E15218EAAAA00230CBB /* PhotoListViewController.swift */; };
 		59772E18218EBB1C00230CBB /* ProfilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59772E17218EBB1C00230CBB /* ProfilViewController.swift */; };
 		59772E1C218F53E200230CBB /* PhotoCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59772E1B218F53E200230CBB /* PhotoCellTableViewCell.swift */; };
@@ -48,6 +49,7 @@
 		4660CFD9278A7C47633505C4 /* Pods-INSTA-PATH.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-INSTA-PATH.release.xcconfig"; path = "Pods/Target Support Files/Pods-INSTA-PATH/Pods-INSTA-PATH.release.xcconfig"; sourceTree = "<group>"; };
 		5335A194C369EACB0020744B /* Pods_INSTA_PATH.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_INSTA_PATH.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5619D61985A273338D2AF231 /* Pods-INSTA-PATHUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-INSTA-PATHUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-INSTA-PATHUITests/Pods-INSTA-PATHUITests.release.xcconfig"; sourceTree = "<group>"; };
+		5947432421A84CCA00989873 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		59772E15218EAAAA00230CBB /* PhotoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListViewController.swift; sourceTree = "<group>"; };
 		59772E17218EBB1C00230CBB /* ProfilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilViewController.swift; sourceTree = "<group>"; };
 		59772E1B218F53E200230CBB /* PhotoCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCellTableViewCell.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				59772E15218EAAAA00230CBB /* PhotoListViewController.swift */,
 				59772E17218EBB1C00230CBB /* ProfilViewController.swift */,
 				59772E1B218F53E200230CBB /* PhotoCellTableViewCell.swift */,
+				5947432421A84CCA00989873 /* DetailsViewController.swift */,
 			);
 			path = "INSTA-PATH";
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 			files = (
 				59ECD2AA2181FD0800680E95 /* RegisterViewController.swift in Sources */,
 				59E2233E21811C7700FAEBEA /* ViewController.swift in Sources */,
+				5947432521A84CCA00989873 /* DetailsViewController.swift in Sources */,
 				59772E18218EBB1C00230CBB /* ProfilViewController.swift in Sources */,
 				59ECD2AC218251AA00680E95 /* PhotoMapViewController.swift in Sources */,
 				59772E1C218F53E200230CBB /* PhotoCellTableViewCell.swift in Sources */,
